@@ -1,0 +1,19 @@
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+form input{
+    margin-bottom: 15px;
+}
+form label{
+    margin-bottom: 15px;
+}
+
+.hide{
+    opacity: 0;
+}
+
+#result, #result1{
+    transition: all .2s;
+}
