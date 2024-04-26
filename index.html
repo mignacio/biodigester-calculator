@@ -17,31 +17,57 @@
         <div class="container flex-column justify-content-center">
           <form>
             <p>
-              Metodo 1: Calcular la carga diaria de un biodigestor a partir de su volumen.
+              <b>Metodo 1:</b> Calcular la carga diaria de un biodigestor a partir de su volumen.
+              La formula para hacerlo es la siguiente:
             </p>
+            <math class="text-center py-1">
+              <mrow>
+                <mi>Carga diaria[kg]</mi> = <mfrac><mi>Volumen digestor[kg]</mi><mi>Tiempo de Retencion Hidraulico[dias]</mi></mfrac>
+              </mrow>
+          </math>
           </form>
           <form>
-            <h3 class="text-center py-1">Carga diaria</h3>
-            <label for="tiempo-rec">TRH[Dias] (Tiempo de retencion hidraulico)</label>
+            <h3 class="text-center py-2">Carga diaria</h3>
+            <label for="tiempo-rec"><b>TRH[Dias]</b> (Tiempo de retencion hidraulico)</label>
             <input type="text" id="tiempo-rec" name="tiempo-rec">
-            <label for="volumen-util">Volumen del biogigestor[L] (~90% del volumen total)</label>
+            <label for="volumen-util"><b>Volumen del digestor[kg]</b> (Volumen ocupado por el liquido en el digestor, se asume misma densidad que el agua.)</label>
             <input type="text" id="volumen-util" name="volumen-util">
             <button type="button" class="btn btn-primary" id="carga-diaria">Calcular carga diaria:</button>
             <div id="result" class="hide mt-3">
-              Carga diaria[kg]: <span></span>
+              Carga diaria (C2)[kg]: <span></span>
             </div>
         </form>
         <form>
-          <h3 class="text-center py-1">Balance de masa</h3>
-          <label for="masa-uno">M1[kg] (masa del sustrato)</label>
+          <h3 class="text-center py-2">Balance de masa</h3>
+          <p>
+            La masa de carga diaria consiste de una solucion de sustrato con agua. Se suele utilizar una solucion de 8%.
+            Con la siguiente formula es posible obtener la cantidad de agua que debe agregarse al sustrato para obtener ese porcentaje de solucion.
+            <br>
+          </p>
+          <math class="text-center py-1">
+            <mi>M1</mi> <mo>&#x2217;</mo> <mi>C1</mi> <mo>=</mo> <mi>M2</mi> <mo>&#x2217;</mo> <mi>C2</mi>
+          </math>
+          <p>
+            Despejando M2 se obtiene la masa total del sustrato diluido para alimentar el digestor.
+          </p>
+          <math class="text-center py-1">
+            <mi>M2</mi> <mo>=</mo> <mi>M1</mi> <mo>&#x2217;</mo> <mfrac><mi>C1</mi><mi>C2</mi></mfrac>
+          </math>
+          <p>
+            El agua que debe agregarse al sustrato se puede obtener de restar M2 y M1.
+          </p>
+          <math class="text-center py-1">
+            <mi>Magua</mi> <mo>=</mo> <mi>M2</mi> <mo>-</mo> <mi>M1</mi>
+          </math>
+          <label for="masa-uno"><b>M1[kg]</b> (Masa del sustrato)</label>
           <input type="text" id="masa-uno" name="masa-uno">
-          <label for="contenido-uno">C1[%] (Contenido de solidos del sustrato puro, sin agregado de agua)</label>
+          <label for="contenido-uno"><b>C1[%]</b> (Contenido de solidos del sustrato puro, sin agregado de agua)</label>
           <input type="text" id="contenido-uno" name="contenido-uno">
-          <label for="masa-dos">M2[kg] (Masa total de la mezcla sustrato con agua)</label>
+          <label for="masa-dos"><b>M2[kg]</b> (Masa total de la mezcla sustrato con agua)</label>
           <input type="text" id="masa-dos" name="masa-dos">
-          <label for="contenido-dos">C2[%] (Contenido de solidos del sustrato con agregado de agua)</label>
+          <label for="contenido-dos"><b>C2[%]</b> (Contenido de solidos del sustrato con agregado de agua)</label>
           <input type="text" id="contenido-dos" name="contenido-dos">
-          <button type="button" class="btn btn-primary" id="agua-agregada">Calcular</button>
+          <button type="button" class="btn btn-primary" id="agua-agregada">Calcular agua a agregar:</button>
           <div id="result1" class="hide mt-3">
             Agua agregada[L]: <span></span>
           </div>
